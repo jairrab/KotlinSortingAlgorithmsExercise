@@ -1,4 +1,4 @@
-package com.jairrab.testlibrary.sortexercise
+package com.jairrab.testlibrary.sortalgorithims
 
 class MergeSort {
     fun sort(array: IntArray): IntArray {

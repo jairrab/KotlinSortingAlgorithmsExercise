@@ -1,4 +1,6 @@
-package com.jairrab.testlibrary.sortexercise
+package com.jairrab.testlibrary.sortalgorithims
+
+import com.jairrab.testlibrary.swap
 
 class BubbleSort {
 

@@ -1,5 +1,6 @@
-package com.jairrab.testlibrary.sortexercise
+package com.jairrab.testlibrary
 
+import com.jairrab.testlibrary.sortalgorithims.*
 import java.util.concurrent.ThreadLocalRandom
 import kotlin.system.measureNanoTime
 
