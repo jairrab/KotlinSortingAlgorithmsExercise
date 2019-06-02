@@ -11,7 +11,6 @@ class QuickSortMiddle {
     private fun sort(array: IntArray, begin: Int, end: Int) {
         if (begin < end) {
             val index = partition(array, begin, end)
-
             sort(array, begin, index - 1)
             sort(array, index, end)
         }
