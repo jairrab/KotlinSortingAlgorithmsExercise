@@ -1,6 +1,6 @@
 package com.jairrab.testlibrary.sortexercise
 
-class QuickSort {
+class QuickSortEnd {
     fun sort(array: IntArray): IntArray {
         sort(array, 0, array.size - 1)
         return array

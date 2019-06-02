@@ -3,16 +3,17 @@ package com.jairrab.testlibrary.sortexercise
 import java.util.concurrent.ThreadLocalRandom
 import kotlin.system.measureNanoTime
 
-private const val ARRAY_SIZE = 10000
-private const val SMALLEST_ELEMENT = -10000
-private const val LARGEST_ELEMENT = 10000
-private const val NUMBER_OF_TEST = 50
+private const val ARRAY_SIZE = 15000
+private const val SMALLEST_ELEMENT = -ARRAY_SIZE / 2
+private const val LARGEST_ELEMENT = ARRAY_SIZE / 2
+private const val NUMBER_OF_TEST = 1
 
 fun main() {
-    val array = IntArray(ARRAY_SIZE)
+    var array = IntArray(ARRAY_SIZE)
     println("Array size = $ARRAY_SIZE")
 
     when (1) {
+        -1 -> array = intArrayOf(1, -1, 5, 4, -3, -5, 3, 1, 1, 1, 4) // custom array
         0 -> for (i in 0 until array.size) array[i] = i //ascending elements
         1 -> for (i in 0 until array.size) array[i] = randomInt() //random elements
         2 -> for (i in 0 until array.size) array[i] = array.size - i //descending elements
@@ -22,12 +23,12 @@ fun main() {
 
     val sortAlgorithms = ArrayList<Pair<String, () -> IntArray>>()
     sortAlgorithms.add(Pair("BuiltInSort", { BuiltInSort().sort(array.copyOf()) }))
+    sortAlgorithms.add(Pair("QuickSortEnd", { QuickSortEnd().sort(array.copyOf()) }))
+    sortAlgorithms.add(Pair("QuickSortMiddle", { QuickSortMiddle().sort(array.copyOf()) }))
+    sortAlgorithms.add(Pair("QuickSortRandom", { QuickSortRandom().sort(array.copyOf()) }))
     sortAlgorithms.add(Pair("MergeSort", { MergeSort().sort(array.copyOf()) }))
-    sortAlgorithms.add(Pair("QuickSort", { QuickSort().sort(array.copyOf()) }))
     sortAlgorithms.add(Pair("BubbleSort", { BubbleSort().sort(array.copyOf()) }))
     sortAlgorithms.add(Pair("InsertionSort", { InsertionSort().sort(array.copyOf()) }))
-
-    sortAlgorithms.shuffle()
 
     val results = ArrayList<Triple<String, Long, IntArray>>()
 
