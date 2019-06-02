@@ -7,7 +7,7 @@ import kotlin.system.measureNanoTime
 private const val ARRAY_SIZE = 15000
 private const val SMALLEST_ELEMENT = -ARRAY_SIZE / 2
 private const val LARGEST_ELEMENT = ARRAY_SIZE / 2
-private const val NUMBER_OF_TEST = 1
+private const val NUMBER_OF_TEST = 10
 
 fun main() {
     var array = IntArray(ARRAY_SIZE)
