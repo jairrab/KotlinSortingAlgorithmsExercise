@@ -19,7 +19,7 @@ fun main() {
     var array = IntArray(ARRAY_SIZE)
     println("Array size = $ARRAY_SIZE")
 
-    when (-1) {
+    when (1) {
         -1 -> array = intArrayOf(1, 2, 4, 3, 5, 7, 6, 8, 9, 10, 12, 11, 13, 14, 15, 16, 17, 19, 18, 21) // custom array
         0 -> for (i in 0 until array.size) array[i] = i //ascending elements
         1 -> for (i in 0 until array.size) array[i] = ThreadLocalRandom.current().nextInt(LOW, HIGH + 1) //random
