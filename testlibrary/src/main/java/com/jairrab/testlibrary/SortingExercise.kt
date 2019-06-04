@@ -88,17 +88,13 @@ fun main() {
     groupedResult.forEach { i ->
         val name = i.key
         val time = String.format("%.3f", i.value.time).toDouble()
-        val speed = String.format("%.1f", getPercentageSpeed(fastestTime, i.value.time))
+        val speed = String.format("%.1f", (((i.value.time - fastestTime) / fastestTime) * 100.0))
         val correctOutput = String.format("%.1f", (i.value.correctness.filter { it }.count() * 100.0) / NUMBER_OF_TEST)
 
         println("${time}ms for $name, $speed% slower. $correctOutput% correct")
 
         if (SHOW_OUTPUT_ARRAY) println(i.value.arrays[0].toList())
     }
-}
-
-private fun getPercentageSpeed(reference: Double, subject: Double): Double {
-    return (((subject - reference) / reference) * 100.0)
 }
 
 internal fun swap(array: IntArray, i: Int, j: Int) {
