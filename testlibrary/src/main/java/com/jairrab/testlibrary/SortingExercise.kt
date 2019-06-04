@@ -6,12 +6,11 @@ import java.util.concurrent.ThreadLocalRandom
 import java.util.stream.Collectors
 import kotlin.system.measureNanoTime
 
-
 private const val ARRAY_SIZE = 10000
-private const val SMALLEST_ELEMENT = -ARRAY_SIZE / 2
-private const val LARGEST_ELEMENT = ARRAY_SIZE / 2
-private const val NUMBER_OF_TEST = 11
-private const val WARMUP_RUNS = 3
+private const val LOW = -ARRAY_SIZE / 2
+private const val HIGH = ARRAY_SIZE / 2
+private const val NUMBER_OF_TEST = 15
+private const val WARMUP_RUNS = 2
 private const val SHOW_INPUT_ARRAY = false
 private const val SHOW_OUTPUT_ARRAY = false //show first output array of each algorithm
 
@@ -20,11 +19,10 @@ fun main() {
     var array = IntArray(ARRAY_SIZE)
     println("Array size = $ARRAY_SIZE")
 
-    when (1) {
-        -1 -> array = intArrayOf(1, -1, 5, 4, -3, -5, 3, 1, 1, 1, 4) // custom array
+    when (-1) {
+        -1 -> array = intArrayOf(1, 2, 4, 3, 5, 7, 6, 8, 9, 10, 12, 11, 13, 14, 15, 16, 17, 19, 18, 21) // custom array
         0 -> for (i in 0 until array.size) array[i] = i //ascending elements
-        1 -> for (i in 0 until array.size) array[i] =
-            ThreadLocalRandom.current().nextInt(SMALLEST_ELEMENT, LARGEST_ELEMENT + 1) //random elements
+        1 -> for (i in 0 until array.size) array[i] = ThreadLocalRandom.current().nextInt(LOW, HIGH + 1) //random
         2 -> for (i in 0 until array.size) array[i] = array.size - i //descending elements
     }
 
@@ -51,18 +49,30 @@ fun main() {
     repeat(NUMBER_OF_TEST) { i ->
         sortAlgorithms.shuffle()
 
-        println("Test #$i= ${sortAlgorithms.map { it.first }}")
+        var fastest = ""
+        var fastestTime = 10000000000000.0
+        var slowest = ""
+        var slowestTime = 0.0
 
-        for (j in sortAlgorithms) {
+        sortAlgorithms.forEach { j ->
             var arr = intArrayOf()
-            results.add(
-                Result(
-                    name = j.first,
-                    time = measureNanoTime { arr = j.second() } / 1000000.0,
-                    array = arr
-                )
+            val result = Result(
+                name = j.first,
+                time = measureNanoTime { arr = j.second() } / 1000000.0,
+                array = arr
             )
+            results.add(result)
+            if (result.time < fastestTime) {
+                fastest = result.name
+                fastestTime = result.time
+            }
+            if (result.time > slowestTime) {
+                slowest = result.name
+                slowestTime = result.time
+            }
         }
+
+        println("Test #${i + 1}= ${sortAlgorithms.map { it.first }}, fastest=$fastest slowest=$slowest")
     }
 
     println()
