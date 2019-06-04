@@ -23,7 +23,7 @@ class QuickSortRandom {
     private fun partition(array: IntArray, begin: Int, end: Int): Int {
         var i = begin
         var j = end
-        val pivot = random.nextInt(begin,end)
+        val pivot = random.nextInt(begin, end)
 
         while (i < j) {
             while (array[i] <= array[pivot]) {
@@ -31,14 +31,12 @@ class QuickSortRandom {
                 i++
             }
 
-            while (j > i && array[pivot] <= array[j]) {
-                if (j == 0) break
+            while (array[pivot] <= array[j]) {
+                if (j == i) break
                 j--
             }
 
-            if (i != j) {
-                swap(array, i, j)
-            } else {
+            if (i == j) {
                 if (i > pivot) {
                     if (array[pivot] > array[i]) swap(array, i, pivot)
                 } else if (i < pivot) {
@@ -46,6 +44,8 @@ class QuickSortRandom {
                 }
                 return i
             }
+
+            swap(array, i, j)
         }
 
         throw Exception("Sorting error...")

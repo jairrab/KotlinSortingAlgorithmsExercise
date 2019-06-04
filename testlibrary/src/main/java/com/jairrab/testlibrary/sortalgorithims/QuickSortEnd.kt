@@ -11,18 +11,16 @@ class QuickSortEnd {
     private fun sort(array: IntArray, begin: Int, end: Int) {
         if (begin < end) {
             val partitionIndex = partition(array, begin, end)
-
             sort(array, begin, partitionIndex - 1)
             sort(array, partitionIndex + 1, end)
         }
     }
 
     private fun partition(array: IntArray, begin: Int, end: Int): Int {
-        val pivot = array[end]
         var i = begin
 
         for (j in begin until end) {
-            if (array[j] <= pivot) {
+            if (array[j] <= array[end]) {
                 swap(array, i, j)
                 i++
             }

@@ -27,8 +27,8 @@ class QuickSortMiddle {
                 i++
             }
 
-            while (j > i && array[pivot] <= array[j]) {
-                if (j == 0) break
+            while (array[pivot] <= array[j]) {
+                if (j == i) break
                 j--
             }
 
@@ -39,9 +39,9 @@ class QuickSortMiddle {
                     if (array[pivot] < array[i]) swap(array, i, pivot)
                 }
                 return i
-            } else {
-                swap(array, i, j)
             }
+
+            swap(array, i, j)
         }
 
         throw Exception("Sorting error...")
