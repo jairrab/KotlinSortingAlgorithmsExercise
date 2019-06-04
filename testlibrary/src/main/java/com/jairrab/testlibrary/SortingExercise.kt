@@ -32,6 +32,7 @@ fun main() {
     sortAlgorithms.add(Pair("BuiltInSort", { BuiltInSort().sort(array.copyOf()) }))
     sortAlgorithms.add(Pair("QuickSortEnd", { QuickSortEnd().sort(array.copyOf()) }))
     sortAlgorithms.add(Pair("QuickSortMiddle", { QuickSortMiddle().sort(array.copyOf()) }))
+    sortAlgorithms.add(Pair("QuickSortMiddle2", { QuickSortMiddle2().sort(array.copyOf()) }))
     sortAlgorithms.add(Pair("QuickSortRandom", { QuickSortRandom().sort(array.copyOf()) }))
     sortAlgorithms.add(Pair("MergeSort", { MergeSort().sort(array.copyOf()) }))
     sortAlgorithms.add(Pair("BubbleSort", { BubbleSort().sort(array.copyOf()) })) //throws exception for large arrays
