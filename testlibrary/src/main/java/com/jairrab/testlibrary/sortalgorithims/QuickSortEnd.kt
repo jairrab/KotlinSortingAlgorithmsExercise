@@ -9,10 +9,14 @@ class QuickSortEnd {
     }
 
     private fun sort(array: IntArray, begin: Int, end: Int) {
-        if (begin < end) {
-            val partitionIndex = partition(array, begin, end)
-            sort(array, begin, partitionIndex - 1)
-            sort(array, partitionIndex + 1, end)
+        if (end - begin <= 0) {
+            return
+        } else if (end - begin == 1) {
+            if (array[begin] > array[end]) swap(array, begin, end)
+        } else {
+            val index = partition(array, begin, end)
+            sort(array, begin, index - 1)
+            sort(array, index + 1, end)
         }
     }
 
